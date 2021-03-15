@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+       <label>Add Image  {{form.imgf}}<br><br></label>
+        <label>Add Xml File {{form.xmlf}}<br><br></label>
+
+
+        <input type="Submit" value="Submit">
+
+        </form><br><br>
+        <form action="{% url 'report' %}" method="POST" >
+        {% csrf_token %}
+       <label>Sdate </label>
+       <input type="date" name="Sdate" ><br><br>
+       <label> edate</label> 
+       <input type="date" name="Edate"><br><br>
+       <input type="Submit" value="Submit">
+        </form>
+        <script src="" async defer></script>
+        <div id="div1" style="width:200px; height:200px;"></div>
+        <script>
+      const url_api="http://127.0.0.1:8000/image/";
+    async function getsrc(){
+        const response= await fetch(url_api);
+        const data=await response.json();
+        
+        var img = document.createElement('img'); 
+            img.src = data.imgf;
+            document.getElementById('div1').appendChild(img); 
+           
+    }
+    getsrc();
+    </script>
+    </body>
+</html>
